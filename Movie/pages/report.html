@@ -1,0 +1,90 @@
+<h2 class="mb-4">Reports</h2>
+
+<h4 class="mt-4"> Movie-wise Booking Report</h4>
+<div class="table-responsive mb-5">
+  <table class="table table-bordered table-striped" id="movieReportTable">
+    <thead class="table-dark">
+      <tr>
+        <th>#</th>
+        <th>Movie</th>
+        <th>Total Seats Booked</th>
+      </tr>
+    </thead>
+    <tbody id="movieReportBody">
+    
+    </tbody>
+  </table>
+</div>
+
+
+<h4 class="mt-4"> Date-wise Revenue Report</h4>
+<div class="table-responsive">
+  <table class="table table-bordered table-striped" id="dateReportTable">
+    <thead class="table-dark">
+      <tr>
+        <th>#</th>
+        <th>Date</th>
+        <th>Total Revenue</th>
+        <th>Total Tickets</th>
+      </tr>
+    </thead>
+    <tbody id="dateReportBody">
+      
+    </tbody>
+  </table>
+</div>
+
+<script>
+  // Function to fetch and render the Movie-wise Booking Report
+  fetch("http://localhost:8080/api/reports/movie-bookings", {
+          method: "GET",
+          headers: { 
+            "Authorization": getAuthorization()
+           }})
+    .then(res => res.json())
+    .then(data => {
+      const movieReportBody = document.getElementById("movieReportBody");
+      movieReportBody.innerHTML = ""; // Clear existing content
+      data.forEach((item, index) => {
+        const row = `
+          <tr>
+            <td>${index + 1}</td>
+            <td>${item.movieName}</td>
+            <td>${item.totalSeats}</td>
+          </tr>
+        `;
+        movieReportBody.innerHTML += row;
+      });
+    })
+    .catch(err => {
+      console.error("Error loading movie bookings report:", err);
+    });
+
+  // Function to fetch and render the Date-wise Revenue Report
+  fetch("http://localhost:8080/api/reports/date-revenue",
+    {
+          method: "GET",
+          headers: { 
+            "Authorization": getAuthorization()
+           }}
+  )
+    .then(res => res.json())
+    .then(data => {
+      const dateReportBody = document.getElementById("dateReportBody");
+      dateReportBody.innerHTML = ""; // Clear existing content
+      data.forEach((item, index) => {
+        const row = `
+          <tr>
+            <td>${index + 1}</td>
+            <td>${item.date}</td>
+            <td>₹${item.totalRevenue}</td>
+            <td>${item.totalTickets}</td>
+          </tr>
+        `;
+        dateReportBody.innerHTML += row;
+      });
+    })
+    .catch(err => {
+      console.error("Error loading date revenue report:", err);
+    });
+</script>

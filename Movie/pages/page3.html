@@ -1,0 +1,216 @@
+<h2 class="mb-4">Registration Form</h2>
+
+<form id="userForm" class="mb-4">
+  <div class="mb-3">
+    <label for="username" class="form-label">Username</label>
+    <input type="text" class="form-control" id="username" required>
+    <div class="invalid-feedback">At least 5 characters required.</div>
+  </div>
+  <div class="mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input type="text" class="form-control" id="email" required>
+    <div class="invalid-feedback">Invalid or Used email</div>
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input type="text" class="form-control" id="password" required>
+    <div class="invalid-feedback">Password should be 8 chars at least 1 Uppercase, 1 lowercase, 1 special character, 1 number</div>
+  </div>
+  <div class="mb-3">
+    <label for="phone" class="form-label">Phone Number</label>
+    <input type="text" class="form-control" id="phone" required>
+    <div class="invalid-feedback">Phone number should be 10 digits long and start with 978.</div>
+  </div>
+  <button type="submit" class="btn btn-primary" id="submitBtn">Register</button><br>
+</form>
+
+<h2 class="mb-4">Registered Users</h2>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Username <i class="bi bi-arrow-down-up"></i></th>
+      <th>Email</th>
+      <th>User Type</th>
+    </tr>
+  </thead>
+  <tbody id="userTableBody"></tbody>
+</table>
+
+<script>
+(() => {
+  const apiUrl = "http://localhost:8080/api/users";
+  const form = document.getElementById("userForm");
+  const usernameInput = document.getElementById("username");
+  const emailInput = document.getElementById("email");
+  const passwordInput = document.getElementById("password");
+  const phoneInput = document.getElementById("phone");
+  const submitBtn = document.getElementById("submitBtn");
+  const userTableBody = document.getElementById("userTableBody");
+
+  let editId = null;
+  let allUsers = [];
+  let sortDirection = 1;
+
+  function clearValidation() {
+      nameInput.classList.remove("is-valid", "is-invalid");
+      genreInput.classList.remove("is-valid", "is-invalid");
+      durationInput.classList.remove("is-valid", "is-invalid");
+      languageInput.classList.remove("is-valid", "is-invalid");
+    }
+
+  function validateUsername() {
+    if (usernameInput.value.trim().length >= 5) {
+      usernameInput.classList.add("is-valid");
+      usernameInput.classList.remove("is-invalid");
+      return true;
+    } else {
+      usernameInput.classList.add("is-invalid");
+      usernameInput.classList.remove("is-valid");
+      return false;
+    }
+  }
+
+  function validatePassword() {
+    const passVal = passwordInput.value;
+    const passRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
+    if (passRegex.test(passVal)) {
+      passwordInput.classList.add("is-valid");
+      passwordInput.classList.remove("is-invalid");
+      return true;
+    } else {
+      passwordInput.classList.add("is-invalid");
+      passwordInput.classList.remove("is-valid");
+      return false;
+    }
+  }
+
+  function validatePhone() {
+    const phoneVal = phoneInput.value;
+    const phoneRegex = /^[978]\d{9}$/;
+    if (phoneRegex.test(phoneVal)) {
+      phoneInput.classList.add("is-valid");
+      phoneInput.classList.remove("is-invalid");
+      return true;
+    } else {
+      phoneInput.classList.add("is-invalid");
+      phoneInput.classList.remove("is-valid");
+      return false;
+    }
+  }
+
+  function validateEmail() {
+    const emailVal = emailInput.value.trim();
+    const emailPattern = /\S+@\S+\.\S+/;
+  if (emailPattern.test(emailVal)) {
+    emailInput.classList.add("is-valid");
+    emailInput.classList.remove("is-invalid");
+    return true;
+  } else {
+    emailInput.classList.add("is-invalid");
+    emailInput.classList.remove("is-valid");
+    return false;
+  }
+}
+
+  usernameInput.addEventListener("blur", validateUsername);
+  passwordInput.addEventListener("blur", validatePassword);
+  phoneInput.addEventListener("blur", validatePhone);
+  emailInput.addEventListener("blur", validateEmail);
+
+  function clearValidation() {
+    document.querySelectorAll(".form-control").forEach(el => el.classList.remove("is-valid", "is-invalid"));
+  }
+
+  function renderUsersTable(users) {
+    userTableBody.innerHTML = "";
+
+    if (users.length === 0) {
+      userTableBody.innerHTML = `<tr><td colspan="4" class="text-center">No users found.</td></tr>`;
+      return;
+    }
+
+    users.forEach((user) => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${user.id}</td>
+        <td>${user.name}</td>
+        <td>${user.email}</td>
+        <td>${user.usertype}</td>
+      `;
+      userTableBody.appendChild(row);
+    });
+  }
+
+  function fetchUsers() {
+    fetch(apiUrl,{
+          method: "GET",
+          headers: { 
+            "Authorization": getAuthorization()
+           }})
+      .then(res => res.json())
+      .then(data => {
+        allUsers = data;
+        renderUsersTable(data);
+      });
+  }
+
+  document.querySelector("th:nth-child(2)").style.cursor = "pointer";
+  document.querySelector("th:nth-child(2)").addEventListener("click", () => {
+    const sorted = [...allUsers].sort((a, b) =>
+      a.username.localeCompare(b.username) * sortDirection
+    );
+    sortDirection *= -1;
+    renderUsersTable(sorted);
+  });
+
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+    const valid = validateUsername() & validatePassword() & validateEmail() & validatePhone();
+    if (!valid) return;
+
+    const user = {
+      name: usernameInput.value.trim(),
+      email: emailInput.value.trim(),
+      password: passwordInput.value.trim(),
+      phone: phoneInput.value.trim(),
+      usertype: "admin"
+    };
+
+    try {
+    const response = await fetch(apiUrl, {
+          method: "POST",
+          headers: { 
+            "Content-Type": "application/json",
+            "Authorization": getAuthorization()
+           },
+          body: JSON.stringify(user),
+        });
+
+    if (response.conflict) {
+      const errorText = await response.text();
+
+      // Show email error if that's the issue (email already in use)
+      if (errorText.includes("Email already in use")) {
+        emailInput.classList.add("is-invalid");
+        emailInput.classList.remove("is-valid");
+      }
+
+      console.warn("Server error:", errorText); // Log to help debug
+      return;
+    }
+
+    // Success case
+    await fetchUsers(); // Update the user list
+    form.reset(); // Reset the form
+    clearValidation(); // Clear all validation classes
+    submitBtn.textContent = "Register";
+  } catch (err) {
+    console.error("Error submitting form:", err); // Log any other errors
+  }
+});
+
+  fetchUsers();
+})();
+</script>
+

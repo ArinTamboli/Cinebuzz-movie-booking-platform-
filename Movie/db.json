@@ -1,0 +1,1090 @@
+{
+  "movies": [
+    {
+      "id": "2",
+      "name": "Zingaat",
+      "genre": "Romance",
+      "language": "Marathi",
+      "duration": 142
+    },
+    {
+      "id": "3",
+      "name": "Dsk",
+      "genre": "Romance",
+      "language": "Marathi",
+      "duration": 142
+    },
+    {
+      "id": "4",
+      "name": "Lucky",
+      "genre": "Romance",
+      "language": "Marathi",
+      "duration": 142
+    },
+    {
+      "id": "5",
+      "name": "Duniyadari",
+      "genre": "Romance",
+      "language": "Marathi",
+      "duration": 142
+    },
+    {
+      "name": "Batman",
+      "genre": "Action",
+      "language": "English",
+      "duration": "152",
+      "id": "6"
+    },
+    {
+      "name": "Andha",
+      "genre": "Thriller",
+      "language": "Hindi",
+      "duration": "139",
+      "id": "7"
+    },
+    {
+      "id": "8",
+      "name": "Lai Bhaari",
+      "genre": "Action",
+      "language": "Marathi",
+      "duration": 155
+    },
+    {
+      "id": "9",
+      "name": "Lai Bhaari 2",
+      "genre": "Action",
+      "language": "Marathi",
+      "duration": 155
+    },
+    {
+      "id": "10",
+      "name": "Drishyam",
+      "genre": "Thriller",
+      "language": "Hindi",
+      "duration": 163
+    },
+    {
+      "id": "11",
+      "name": "Chhichhore",
+      "genre": "Comedy",
+      "language": "Hindi",
+      "duration": 143
+    },
+    {
+      "id": "12",
+      "name": "Avatar",
+      "genre": "Action",
+      "language": "English",
+      "duration": 162
+    },
+    {
+      "id": "13",
+      "name": "Mumbai Pune Mumbai",
+      "genre": "Romance",
+      "language": "Marathi",
+      "duration": 148
+    },
+    {
+      "id": "14",
+      "name": "PK",
+      "genre": "Comedy",
+      "language": "Hindi",
+      "duration": 153
+    },
+    {
+      "id": "15",
+      "name": "Interstellar",
+      "genre": "Thriller",
+      "language": "English",
+      "duration": 169
+    },
+    {
+      "id": "16",
+      "name": "Thackeray",
+      "genre": "Action",
+      "language": "Marathi",
+      "duration": 139
+    },
+    {
+      "id": "17",
+      "name": "Kahaani",
+      "genre": "Thriller",
+      "language": "Hindi",
+      "duration": 122
+    },
+    {
+      "id": "18",
+      "name": "Dangal",
+      "genre": "Action",
+      "language": "Hindi",
+      "duration": 161
+    },
+    {
+      "id": "19",
+      "name": "The Lunchbox",
+      "genre": "Romance",
+      "language": "Hindi",
+      "duration": 104
+    },
+    {
+      "id": "20",
+      "name": "De Dhakka",
+      "genre": "Comedy",
+      "language": "Marathi",
+      "duration": 140
+    },
+    {
+      "id": "21",
+      "name": "Mission Mangal",
+      "genre": "Thriller",
+      "language": "Hindi",
+      "duration": 133
+    },
+    {
+      "id": "22",
+      "name": "Ferrari Ki Sawaari",
+      "genre": "Comedy",
+      "language": "Hindi",
+      "duration": 134
+    },
+    {
+      "id": "23",
+      "name": "The Prestige",
+      "genre": "Thriller",
+      "language": "English",
+      "duration": 130
+    },
+    {
+      "id": "24",
+      "name": "Dagdi Chawl",
+      "genre": "Action",
+      "language": "Marathi",
+      "duration": 145
+    },
+    {
+      "id": "26",
+      "name": "Rockstar",
+      "genre": "Romance",
+      "language": "Hindi",
+      "duration": 159
+    },
+    {
+      "id": "27",
+      "name": "Pathaan",
+      "genre": "Action",
+      "language": "Hindi",
+      "duration": 146
+    },
+    {
+      "id": "28",
+      "name": "Manjha",
+      "genre": "Thriller",
+      "language": "Marathi",
+      "duration": 120
+    },
+    {
+      "id": "29",
+      "name": "Housefull",
+      "genre": "Comedy",
+      "language": "Hindi",
+      "duration": 155
+    },
+    {
+      "id": "30",
+      "name": "The Matrix",
+      "genre": "Action",
+      "language": "English",
+      "duration": 136
+    },
+    {
+      "id": "ffc7",
+      "name": "orv",
+      "genre": "Thriller",
+      "language": "Hindi",
+      "duration": "180"
+    },
+    {
+      "id": "870e",
+      "name": "Trigun",
+      "genre": "Comedy",
+      "language": "English",
+      "duration": "234"
+    },
+    {
+      "id": "2cad",
+      "name": "Batman",
+      "genre": "Comedy",
+      "language": "English",
+      "duration": "76"
+    },
+    {
+      "id": "35",
+      "name": "Keko",
+      "genre": "Romance",
+      "language": "Marathi",
+      "duration": 140
+    }
+  ],
+  "showtimes": [
+    {
+      "id": "3",
+      "MovieID": "10",
+      "ShowDate": "2025-04-15",
+      "Time": "16:00",
+      "Theater": "Screen 3",
+      "AvailableSeats": 40
+    },
+    {
+      "MovieID": 10,
+      "ShowDate": "2025-04-15",
+      "Time": "19:00",
+      "Theater": "Screen 1",
+      "AvailableSeats": 35,
+      "id": "4"
+    },
+    {
+      "id": "5",
+      "MovieID": "10",
+      "ShowDate": "2025-04-15",
+      "Time": "21:30",
+      "Theater": "Screen 2",
+      "AvailableSeats": 20
+    },
+    {
+      "id": "6",
+      "MovieID": "11",
+      "ShowDate": "2025-04-16",
+      "Time": "10:00",
+      "Theater": "Screen 1",
+      "AvailableSeats": 48
+    },
+    {
+      "id": "7",
+      "MovieID": "12",
+      "ShowDate": "2025-04-16",
+      "Time": "13:00",
+      "Theater": "Screen 2",
+      "AvailableSeats": 38
+    },
+    {
+      "id": "8",
+      "MovieID": "23",
+      "ShowDate": "2025-04-16",
+      "Time": "16:00",
+      "Theater": "Screen 3",
+      "AvailableSeats": 25
+    },
+    {
+      "id": "9",
+      "MovieID": "1",
+      "ShowDate": "2025-04-16",
+      "Time": "19:00",
+      "Theater": "Screen 1",
+      "AvailableSeats": 33
+    },
+    {
+      "id": "10",
+      "MovieID": "15",
+      "ShowDate": "2025-04-16",
+      "Time": "21:30",
+      "Theater": "Screen 2",
+      "AvailableSeats": 10
+    },
+    {
+      "id": "11",
+      "MovieID": "16",
+      "ShowDate": "2025-04-17",
+      "Time": "09:30",
+      "Theater": "Screen 4",
+      "AvailableSeats": 60
+    },
+    {
+      "id": "12",
+      "MovieID": "17",
+      "ShowDate": "2025-04-17",
+      "Time": "12:30",
+      "Theater": "Screen 5",
+      "AvailableSeats": 55
+    },
+    {
+      "id": "13",
+      "MovieID": "8",
+      "ShowDate": "2025-04-17",
+      "Time": "15:30",
+      "Theater": "Screen 6",
+      "AvailableSeats": 50
+    },
+    {
+      "id": "14",
+      "MovieID": "9",
+      "ShowDate": "2025-04-17",
+      "Time": "18:30",
+      "Theater": "Screen 4",
+      "AvailableSeats": 48
+    },
+    {
+      "id": "15",
+      "MovieID": "1",
+      "ShowDate": "2025-04-17",
+      "Time": "21:00",
+      "Theater": "Screen 5",
+      "AvailableSeats": 36
+    },
+    {
+      "id": "16",
+      "MovieID": "11",
+      "ShowDate": "2025-04-18",
+      "Time": "10:00",
+      "Theater": "Screen 1",
+      "AvailableSeats": 47
+    },
+    {
+      "id": "17",
+      "MovieID": "12",
+      "ShowDate": "2025-04-18",
+      "Time": "13:00",
+      "Theater": "Screen 2",
+      "AvailableSeats": 42
+    },
+    {
+      "id": "18",
+      "MovieID": "13",
+      "ShowDate": "2025-04-18",
+      "Time": "16:00",
+      "Theater": "Screen 3",
+      "AvailableSeats": 28
+    },
+    {
+      "id": "19",
+      "MovieID": "10",
+      "ShowDate": "2025-04-18",
+      "Time": "19:00",
+      "Theater": "Screen 1",
+      "AvailableSeats": 30
+    },
+    {
+      "id": "20",
+      "MovieID": "1",
+      "ShowDate": "2025-04-18",
+      "Time": "21:30",
+      "Theater": "Screen 2",
+      "AvailableSeats": 22
+    },
+    {
+      "id": "21",
+      "MovieID": "16",
+      "ShowDate": "2025-04-19",
+      "Time": "09:30",
+      "Theater": "Screen 4",
+      "AvailableSeats": 58
+    },
+    {
+      "id": "22",
+      "MovieID": "17",
+      "ShowDate": "2025-04-19",
+      "Time": "12:30",
+      "Theater": "Screen 5",
+      "AvailableSeats": 50
+    },
+    {
+      "id": "23",
+      "MovieID": "7",
+      "ShowDate": "2025-04-19",
+      "Time": "15:30",
+      "Theater": "Screen 6",
+      "AvailableSeats": 37
+    },
+    {
+      "id": "24",
+      "MovieID": "15",
+      "ShowDate": "2025-04-19",
+      "Time": "18:30",
+      "Theater": "Screen 4",
+      "AvailableSeats": 35
+    },
+    {
+      "id": "25",
+      "MovieID": "10",
+      "ShowDate": "2025-04-19",
+      "Time": "21:00",
+      "Theater": "Screen 5",
+      "AvailableSeats": 32
+    },
+    {
+      "id": "26",
+      "MovieID": "11",
+      "ShowDate": "2025-04-20",
+      "Time": "10:30",
+      "Theater": "Screen 7",
+      "AvailableSeats": 48
+    },
+    {
+      "id": "27",
+      "MovieID": "1",
+      "ShowDate": "2025-04-20",
+      "Time": "13:30",
+      "Theater": "Screen 8",
+      "AvailableSeats": 38
+    },
+    {
+      "id": "28",
+      "MovieID": "3",
+      "ShowDate": "2025-04-20",
+      "Time": "16:30",
+      "Theater": "Screen 9",
+      "AvailableSeats": 44
+    },
+    {
+      "id": "29",
+      "MovieID": "4",
+      "ShowDate": "2025-04-20",
+      "Time": "19:30",
+      "Theater": "Screen 7",
+      "AvailableSeats": 40
+    },
+    {
+      "id": "30",
+      "MovieID": "4",
+      "ShowDate": "2025-04-20",
+      "Time": "22:00",
+      "Theater": "Screen 8",
+      "AvailableSeats": 25
+    },
+    {
+      "id": "31",
+      "MovieID": "3",
+      "ShowDate": "1313-03-31",
+      "Time": "23:33",
+      "Theater": "Screen 1",
+      "AvailableSeats": 12
+    },
+    {
+      "id": "32",
+      "MovieID": "1",
+      "ShowDate": "2023-03-05",
+      "Time": "23:03",
+      "Theater": "Screen 2",
+      "AvailableSeats": 0
+    },
+    {
+      "id": "33",
+      "MovieID": "23",
+      "ShowDate": "2025-12-31",
+      "Time": "03:34",
+      "Theater": "Screen 3",
+      "AvailableSeats": 30
+    },
+    {
+      "id": "34",
+      "MovieID": "1",
+      "ShowDate": "2025-12-23",
+      "Time": "23:03",
+      "Theater": "Screen 1",
+      "AvailableSeats": 32
+    },
+    {
+      "id": "de13",
+      "MovieID": "4",
+      "ShowDate": "2023-07-23",
+      "Time": "23:05",
+      "Theater": "Screen 2",
+      "AvailableSeats": 30
+    },
+    {
+      "id": "6d1b",
+      "MovieID": "3",
+      "ShowDate": "2025-03-31",
+      "Time": "12:34",
+      "Theater": "Screen 3",
+      "AvailableSeats": 300
+    },
+    {
+      "id": "5ae4",
+      "MovieID": "2",
+      "ShowDate": "2025-04-23",
+      "Time": "07:34",
+      "Theater": "Screen 3",
+      "AvailableSeats": 294
+    }
+  ],
+  "users": [
+    {
+      "name": "Alice Walker",
+      "email": "alice.walker@example.com",
+      "password": "Alic3@pass",
+      "usertype": "user",
+      "id": "1",
+      "phone": "9781234560"
+    },
+    {
+      "name": "Ben Taylor",
+      "email": "ben.taylor@example.com",
+      "password": "B3nT@ylor",
+      "usertype": "admin",
+      "id": "2",
+      "phone": "9781234561"
+    },
+    {
+      "name": "Cara Johnson",
+      "email": "cara.johnson@example.com",
+      "password": "Car@1234",
+      "usertype": "user",
+      "id": "3",
+      "phone": "9781234562"
+    },
+    {
+      "name": "David Lee",
+      "email": "david.lee@example.com",
+      "password": "Dav!d789",
+      "usertype": "user",
+      "id": "4",
+      "phone": "9781234563"
+    },
+    {
+      "name": "Ella Smith",
+      "email": "ella.smith@example.com",
+      "password": "E1la@Pass",
+      "usertype": "user",
+      "id": "5",
+      "phone": "9781234564"
+    },
+    {
+      "name": "Frank Moore",
+      "email": "frank.moore@example.com",
+      "password": "F@nk2024",
+      "usertype": "admin",
+      "id": "6",
+      "phone": "9781234565"
+    },
+    {
+      "name": "Grace Hill",
+      "email": "grace.hill@example.com",
+      "password": "Gr@ce987",
+      "usertype": "user",
+      "id": "7",
+      "phone": "9781234566"
+    },
+    {
+      "name": "Henry Adams",
+      "email": "henry.adams@example.com",
+      "password": "HenrY@55",
+      "usertype": "user",
+      "id": "8",
+      "phone": "9781234567"
+    },
+    {
+      "name": "Ivy Brooks",
+      "email": "ivy.brooks@example.com",
+      "password": "IvyBr@12",
+      "usertype": "user",
+      "id": "9",
+      "phone": "9781234568"
+    },
+    {
+      "name": "Jake Rivers",
+      "email": "jake.rivers@example.com",
+      "password": "Jak3@Live",
+      "usertype": "admin",
+      "id": "10",
+      "phone": "9781234569"
+    },
+    {
+      "name": "Kara White",
+      "email": "kara.white@example.com",
+      "password": "K@ra1234",
+      "usertype": "user",
+      "id": "11",
+      "phone": "9781234570"
+    },
+    {
+      "name": "Leo Martin",
+      "email": "leo.martin@example.com",
+      "password": "LeoMart!2",
+      "usertype": "user",
+      "id": "12",
+      "phone": "9781234571"
+    },
+    {
+      "name": "Mia Clark",
+      "email": "mia.clark@example.com",
+      "password": "MiA@7890",
+      "usertype": "admin",
+      "id": "13",
+      "phone": "9781234572"
+    },
+    {
+      "name": "Noah Lewis",
+      "email": "noah.lewis@example.com",
+      "password": "N0ah@Rock",
+      "usertype": "user",
+      "id": "14",
+      "phone": "9781234573"
+    },
+    {
+      "name": "Olivia Scott",
+      "email": "olivia.scott@example.com",
+      "password": "Ol1v!aSS",
+      "usertype": "user",
+      "id": "15",
+      "phone": "9781234574"
+    },
+    {
+      "name": "Paul King",
+      "email": "paul.king@example.com",
+      "password": "Paulk@2024",
+      "usertype": "user",
+      "id": "16",
+      "phone": "9781234575"
+    },
+    {
+      "name": "Quinn Ray",
+      "email": "quinn.ray@example.com",
+      "password": "Qu!nnR12",
+      "usertype": "admin",
+      "id": "17",
+      "phone": "9781234576"
+    },
+    {
+      "name": "Rita Grant",
+      "email": "rita.grant@example.com",
+      "password": "Rita@888",
+      "usertype": "user",
+      "id": "18",
+      "phone": "9781234577"
+    },
+    {
+      "name": "Sam Dean",
+      "email": "sam.dean@example.com",
+      "password": "S@mD4321",
+      "usertype": "user",
+      "id": "19",
+      "phone": "9781234578"
+    },
+    {
+      "name": "Tina Blake",
+      "email": "tina.blake@example.com",
+      "password": "T!naBlak3",
+      "usertype": "user",
+      "id": "20",
+      "phone": "9781234579"
+    },
+    {
+      "name": "Umar Wells",
+      "email": "umar.wells@example.com",
+      "password": "Umar@4567",
+      "usertype": "user",
+      "id": "21",
+      "phone": "9781234580"
+    },
+    {
+      "name": "Vera Knight",
+      "email": "vera.knight@example.com",
+      "password": "V3ra!Kn8",
+      "usertype": "admin",
+      "id": "22",
+      "phone": "9781234581"
+    },
+    {
+      "name": "Will Sharp",
+      "email": "will.sharp@example.com",
+      "password": "Wi11#Sharp",
+      "usertype": "user",
+      "id": "23",
+      "phone": "9781234582"
+    },
+    {
+      "name": "Xena Cruz",
+      "email": "xena.cruz@example.com",
+      "password": "XeN@9009",
+      "usertype": "user",
+      "id": "24",
+      "phone": "9781234583"
+    },
+    {
+      "name": "Yara Lane",
+      "email": "yara.lane@example.com",
+      "password": "Y@rA1234",
+      "usertype": "admin",
+      "id": "25",
+      "phone": "9781234584"
+    },
+    {
+      "name": "Zane Ford",
+      "email": "zane.ford@example.com",
+      "password": "Zane#567",
+      "usertype": "user",
+      "id": "26",
+      "phone": "9781234585"
+    },
+    {
+      "name": "Amber Neal",
+      "email": "amber.neal@example.com",
+      "password": "Amb3r@N!",
+      "usertype": "user",
+      "id": "27",
+      "phone": "9781234586"
+    },
+    {
+      "name": "Blake Ross",
+      "email": "blake.ross@example.com",
+      "password": "Blake!789",
+      "usertype": "admin",
+      "id": "28",
+      "phone": "9781234587"
+    },
+    {
+      "name": "Chloe Page",
+      "email": "chloe.page@example.com",
+      "password": "Chl@Pa98",
+      "usertype": "user",
+      "id": "29",
+      "phone": "9781234588"
+    },
+    {
+      "name": "Dylan Hart",
+      "email": "dylan.hart@example.com",
+      "password": "Dy1an@HR",
+      "usertype": "user",
+      "id": "30",
+      "phone": "9781234589"
+    },
+    {
+      "id": "31",
+      "name": "jdahf",
+      "email": "shindepratik522003@gmail.com",
+      "password": "313DADa@",
+      "usertype": "user",
+      "phone": "9781234590"
+    },
+    {
+      "id": "32",
+      "name": "jdahf",
+      "email": "shindepratik522003@gmail.com",
+      "password": "ssSDA23#",
+      "usertype": "user",
+      "phone": "9781234591"
+    },
+    {
+      "id": "33",
+      "name": "Pratik",
+      "email": "pRATIK@gamil.com",
+      "password": "Pratik@123",
+      "usertype": "user",
+      "phone": "9781234592"
+    },
+    {
+      "id": "5b4a",
+      "name": "Goert",
+      "email": "Trash@gamil.com",
+      "password": "Shore@123",
+      "usertype": "admin",
+      "phone": "9781234593"
+    },
+    {
+      "id": "e007",
+      "username": "kohoi",
+      "email": "josef@gmail.com",
+      "password": "Pratik@1234D",
+      "phone": "9892838133",
+      "usertype": "user"
+    },
+    {
+      "id": "ee20",
+      "name": "Jayesh",
+      "email": "jayesh@gmail.com",
+      "password": "Jayesh@123",
+      "phone": "7894568654",
+      "usertype": "user"
+    },
+    {
+      "id": "cb45",
+      "name": "Aditya",
+      "email": "aditya@gmail.com",
+      "password": "Aditya@123",
+      "phone": "8244299866",
+      "usertype": "user"
+    },
+    {
+      "id": "430c",
+      "name": "Tejas",
+      "email": "Tejas@gmail.com",
+      "password": "Praik@123",
+      "phone": "8421892527",
+      "usertype": "user"
+    }
+  ],
+  "bookings": [
+    {
+      "UserID": "5",
+      "ShowID": "12",
+      "SeatsBooked": 2,
+      "BookingDate": "2025-04-01",
+      "Amount": 400,
+      "id": "1"
+    },
+    {
+      "UserID": "8",
+      "ShowID": "3",
+      "SeatsBooked": 1,
+      "BookingDate": "2025-04-02",
+      "Amount": 200,
+      "id": "2"
+    },
+    {
+      "UserID": "14",
+      "ShowID": "7",
+      "SeatsBooked": 4,
+      "BookingDate": "2025-04-02",
+      "Amount": 800,
+      "id": "3"
+    },
+    {
+      "UserID": "2",
+      "ShowID": "15",
+      "SeatsBooked": 3,
+      "BookingDate": "2025-04-03",
+      "Amount": 600,
+      "id": "4"
+    },
+    {
+      "UserID": "10",
+      "ShowID": "22",
+      "SeatsBooked": 2,
+      "BookingDate": "2025-04-04",
+      "Amount": 400,
+      "id": "5"
+    },
+    {
+      "UserID": "1",
+      "ShowID": "17",
+      "SeatsBooked": 5,
+      "BookingDate": "2025-04-04",
+      "Amount": 1000,
+      "id": "6"
+    },
+    {
+      "UserID": "6",
+      "ShowID": "6",
+      "SeatsBooked": 1,
+      "BookingDate": "2025-04-05",
+      "Amount": 200,
+      "id": "7"
+    },
+    {
+      "UserID": "18",
+      "ShowID": "21",
+      "SeatsBooked": 2,
+      "BookingDate": "2025-04-05",
+      "Amount": 400,
+      "id": "8"
+    },
+    {
+      "UserID": "4",
+      "ShowID": "14",
+      "SeatsBooked": 3,
+      "BookingDate": "2025-04-06",
+      "Amount": 600,
+      "id": "9"
+    },
+    {
+      "UserID": "19",
+      "ShowID": "9",
+      "SeatsBooked": 2,
+      "BookingDate": "2025-04-06",
+      "Amount": 400,
+      "id": "10"
+    },
+    {
+      "UserID": "3",
+      "ShowID": "1",
+      "SeatsBooked": 2,
+      "BookingDate": "2025-04-07",
+      "Amount": 400,
+      "id": "11"
+    },
+    {
+      "UserID": "7",
+      "ShowID": "30",
+      "SeatsBooked": 1,
+      "BookingDate": "2025-04-08",
+      "Amount": 200,
+      "id": "12"
+    },
+    {
+      "UserID": "25",
+      "ShowID": "5",
+      "SeatsBooked": 4,
+      "BookingDate": "2025-04-08",
+      "Amount": 800,
+      "id": "13"
+    },
+    {
+      "UserID": "12",
+      "ShowID": "11",
+      "SeatsBooked": 3,
+      "BookingDate": "2025-04-09",
+      "Amount": 600,
+      "id": "14"
+    },
+    {
+      "UserID": "30",
+      "ShowID": "23",
+      "SeatsBooked": 2,
+      "BookingDate": "2025-04-10",
+      "Amount": 400,
+      "id": "15"
+    },
+    {
+      "UserID": "22",
+      "ShowID": "2",
+      "SeatsBooked": 5,
+      "BookingDate": "2025-04-10",
+      "Amount": 1000,
+      "id": "16"
+    },
+    {
+      "UserID": "9",
+      "ShowID": "26",
+      "SeatsBooked": 1,
+      "BookingDate": "2025-04-11",
+      "Amount": 200,
+      "id": "17"
+    },
+    {
+      "UserID": "21",
+      "ShowID": "18",
+      "SeatsBooked": 2,
+      "BookingDate": "2025-04-11",
+      "Amount": 400,
+      "id": "18"
+    },
+    {
+      "UserID": "13",
+      "ShowID": "19",
+      "SeatsBooked": 3,
+      "BookingDate": "2025-04-12",
+      "Amount": 600,
+      "id": "19"
+    },
+    {
+      "UserID": "28",
+      "ShowID": "13",
+      "SeatsBooked": 2,
+      "BookingDate": "2025-04-12",
+      "Amount": 400,
+      "id": "20"
+    },
+    {
+      "UserID": "11",
+      "ShowID": "16",
+      "SeatsBooked": 3,
+      "BookingDate": "2025-04-13",
+      "Amount": 600,
+      "id": "21"
+    },
+    {
+      "UserID": "20",
+      "ShowID": "4",
+      "SeatsBooked": 1,
+      "BookingDate": "2025-04-13",
+      "Amount": 200,
+      "id": "22"
+    },
+    {
+      "UserID": "15",
+      "ShowID": "24",
+      "SeatsBooked": 4,
+      "BookingDate": "2025-04-14",
+      "Amount": 800,
+      "id": "23"
+    },
+    {
+      "UserID": "8e4",
+      "ShowID": "27",
+      "SeatsBooked": 2,
+      "BookingDate": "2025-04-14",
+      "Amount": 400,
+      "id": "24"
+    },
+    {
+      "UserID": "29",
+      "ShowID": "28",
+      "SeatsBooked": 1,
+      "BookingDate": "2025-04-14",
+      "Amount": 200,
+      "id": "25"
+    },
+    {
+      "UserID": "16",
+      "ShowID": "25",
+      "SeatsBooked": 5,
+      "BookingDate": "2025-04-15",
+      "Amount": 1000,
+      "id": "26"
+    },
+    {
+      "UserID": "24",
+      "ShowID": "10",
+      "SeatsBooked": 2,
+      "BookingDate": "2025-04-15",
+      "Amount": 400,
+      "id": "27"
+    },
+    {
+      "UserID": "17",
+      "ShowID": "20",
+      "SeatsBooked": 3,
+      "BookingDate": "2025-04-15",
+      "Amount": 600,
+      "id": "28"
+    },
+    {
+      "UserID": "27",
+      "ShowID": "29",
+      "SeatsBooked": 2,
+      "BookingDate": "2025-04-16",
+      "Amount": 400,
+      "id": "29"
+    },
+    {
+      "id": "ffca",
+      "UserID": "33",
+      "ShowID": "23",
+      "SeatsBooked": 3,
+      "BookingDate": "2025-04-21",
+      "Amount": 600
+    },
+    {
+      "id": "a1e6",
+      "UserID": "33",
+      "ShowID": "32",
+      "SeatsBooked": 23,
+      "BookingDate": "2025-04-21",
+      "Amount": 4600
+    },
+    {
+      "id": "e60f",
+      "UserID": "ee20",
+      "ShowID": "34",
+      "SeatsBooked": 2,
+      "BookingDate": "2025-04-21",
+      "Amount": 400
+    },
+    {
+      "id": "d417",
+      "UserID": "33",
+      "ShowID": "5ae4",
+      "SeatsBooked": 3,
+      "BookingDate": "2025-04-21",
+      "Amount": 600
+    },
+    {
+      "id": "63fd",
+      "UserID": "cb45",
+      "ShowID": "5ae4",
+      "SeatsBooked": 3,
+      "BookingDate": "2025-04-21",
+      "Amount": 600
+    }
+  ]
+}

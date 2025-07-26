@@ -1,0 +1,200 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#" onclick="loadPage('dashboard.html')">Dashboard</a></li>
+    <li class="breadcrumb-item"><a href="#" onclick="loadPage('admin.html')">Admin options</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Bookings</li>
+  </ol>
+</nav>
+
+<h2 class="mb-4">Create Booking</h2>
+
+<form id="bookingForm" class="mb-4 needs-validation" novalidate>
+  <div class="mb-3">
+    <label for="movie" class="form-label">Movie</label>
+    <select class="form-select" id="movie" required>
+      <option value="">Select Movie</option>
+    </select>
+    <div class="invalid-feedback">Please select a movie.</div>
+  </div>
+
+  <div class="mb-3">
+    <label for="showtime" class="form-label">Showtime</label>
+    <select class="form-select" id="showtime" required>
+      <option value="">Select Showtime</option>
+    </select>
+    <div class="invalid-feedback">Please select a showtime.</div>
+  </div>
+
+  <div class="mb-3">
+    <label for="seats" class="form-label">Number of Seats</label>
+    <input type="number" class="form-control" id="seats" min="1" required>
+    <div class="invalid-feedback">Please enter a valid number of seats.</div>
+  </div>
+
+  <div class="mb-3">
+    <label for="amount" class="form-label">Total Amount</label>
+    <input type="text" class="form-control" id="amount" readonly>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Book Now</button>
+</form>
+
+<script>
+(() => {
+  const apiUrlBookings = "http://localhost:8080/api/bookings";
+  const apiUrlShowtimes = "http://localhost:8080/api/showtimes";
+  const apiUrlMovies = "http://localhost:8080/api/movies";
+
+  const bookingForm = document.getElementById("bookingForm");
+  const movieInput = document.getElementById("movie");
+  const showtimeInput = document.getElementById("showtime");
+  const seatsInput = document.getElementById("seats");
+  const amountInput = document.getElementById("amount");
+
+  let allShowtimes = [];
+  let allMovies = [];
+
+ const token = localStorage.getItem("jwtToken");
+
+/*if (!token) {
+  alert("You are not logged in. Redirecting to login page.");
+  window.location.href = "/movie/login.html";
+  return;
+}*/
+
+  function fetchAndRenderMovies() {
+    fetch(apiUrlMovies,
+      {
+     method: "GET",
+      headers: {
+        "Authorization": getAuthorization()
+      }}
+    )
+      .then(res => res.json())
+      .then(data => {
+        allMovies = data;
+        movieInput.innerHTML = '<option value="">Select Movie</option>';
+        data.forEach(movie => {
+          const option = document.createElement("option");
+          option.value = movie.id;
+          option.textContent = movie.name;
+          movieInput.appendChild(option);
+        });
+      });
+  }
+
+  function fetchAndRenderShowtimes() {
+   const selectedMovieId = movieInput.value;
+
+  if (!selectedMovieId) {
+    showtimeInput.innerHTML = '<option value="">Select Showtime</option>';
+    return;
+  }
+
+  fetch(`${apiUrlShowtimes}?movieID=${selectedMovieId}`, {
+     method: "GET",
+      headers: {
+        "Authorization": getAuthorization()
+      }}
+  )
+    .then(res => res.json())
+    .then(data => {
+      allShowtimes = data;
+      showtimeInput.innerHTML = '<option value="">Select Showtime</option>';
+      data.forEach(showtime => {
+        const movie = allMovies.find(m => m.id == showtime.movieID);
+        const option = document.createElement("option");
+        option.value = showtime.id;
+        option.textContent = `${movie?.name || 'Unknown Movie'} - ${showtime.showDate} ${showtime.time} (${showtime.theater}) - ${showtime.availableSeats} seats left`;
+        showtimeInput.appendChild(option);
+      });
+    });
+
+  }
+
+  movieInput.addEventListener("change", fetchAndRenderMovies);
+
+  seatsInput.addEventListener("input", function () {
+    const numberOfSeats = parseInt(seatsInput.value);
+    amountInput.value = (!isNaN(numberOfSeats) && numberOfSeats >= 1) ? 200 * numberOfSeats : '';
+  });
+
+  bookingForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const movieId = movieInput.value;
+    const showtimeId = showtimeInput.value;
+    const numberOfSeats = parseInt(seatsInput.value);
+    const totalAmount = parseInt(amountInput.value);
+
+    if (!movieId || !showtimeId || !numberOfSeats || !totalAmount) return;
+
+    const selectedShow = allShowtimes.find(s => s.id === showtimeId);
+
+    if (!selectedShow) {
+      alert("Selected showtime not found.");
+      return;
+    }
+
+    if (numberOfSeats > selectedShow.AvailableSeats) {
+      alert(`Only ${selectedShow.AvailableSeats} seat(s) available for this showtime.`);
+      return;
+    }
+
+    const today = new Date().toISOString().split("T")[0];
+
+    const booking = {
+      userID: userId,
+      showID: showtimeId,
+      seatsBooked: numberOfSeats,
+      bookingDate: today,
+      amount: totalAmount
+    };
+
+    fetch(apiUrlBookings, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": getAuthorization()
+      },
+      body: JSON.stringify(booking),
+    })
+      .then(() => {
+        alert("Booking Successful!");
+        
+        // Deduct the booked seats from AvailableSeats
+        const updatedShowtime = { 
+          ...selectedShow, 
+          AvailableSeats: selectedShow.AvailableSeats - numberOfSeats 
+        };
+
+        fetch(`${apiUrlShowtimes}/${showtimeId}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": getAuthorization()
+          },
+          body: JSON.stringify(updatedShowtime),
+        })
+        .then(() => {
+          fetchAndRenderShowtimes(); // Refresh available seats
+          bookingForm.reset();
+          amountInput.value = ''; // Clear amount field after booking
+        })
+        .catch((error) => {
+          console.error("Error updating available seats:", error);
+        });
+      })
+      .catch((error) => {
+        console.error("Error making booking:", error);
+      });
+  });
+
+  fetchAndRenderMovies();
+  fetchAndRenderShowtimes();
+})();
+</script>
+
+
+  
+  

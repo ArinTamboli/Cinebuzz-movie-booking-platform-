@@ -1,0 +1,160 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#" onclick="loadPage('dashboard.html')">Dashboard</a></li>
+    <li class="breadcrumb-item"><a href="#" onclick="loadPage('page4.html')">User options</a></li>
+    <li class="breadcrumb-item active" aria-current="page">My Bookings</li>
+  </ol>
+</nav>
+
+<h2 class="mb-4">Your Bookings</h2>
+
+<input type="text" id="searchBookingInput" class="form-control mb-3" placeholder="Search by User ID or Show ID...">
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th id="sortBookingID" style="cursor: pointer;">Booking ID <i class="bi bi-arrow-down-up"></i></th>
+      <th id="sortUserEmail" style="cursor: pointer;">User Email</th>
+      <th id="sortMovieName" style="cursor: pointer;">Movie Name</th>
+      <th id="sortShowDate" style="cursor: pointer;">Show Date</th>
+      <th id="sortShowTime" style="cursor: pointer;">Show Time</th>
+      <th id="sortSeats" style="cursor: pointer;">Seats Booked</th>
+      <th id="sortAmount" style="cursor: pointer;">Amount</th>
+    </tr>
+  </thead>
+  <tbody id="bookingTableBody"></tbody>
+</table>
+
+<script>
+(() => {
+  const bookingApiUrl = "http://localhost:8080/api/bookings";
+  const showtimesApiUrl = "http://localhost:8080/api/showtimes";
+  const moviesApiUrl = "http://localhost:8080/api/movies";
+  const usersApiUrl = "http://localhost:8080/api/users"; // New API for users
+
+  const bookingTableBody = document.getElementById("bookingTableBody");
+  const searchBookingInput = document.getElementById("searchBookingInput");
+
+  let allBookings = [];
+  let allShowtimes = [];
+  let allMovies = [];
+  let allUsers = []; // Store user data here
+  let sortDirection = 1;
+
+  // Fetch data from the APIs
+  function fetchData() {
+    Promise.all([
+      fetch(bookingApiUrl, {
+          method: "GET",
+          headers: { 
+            "Authorization": getAuthorization()
+           }}).then(res => res.json()),
+      fetch(showtimesApiUrl, {
+          method: "GET",
+          headers: { 
+            "Authorization": getAuthorization()
+           }}).then(res => res.json()),
+      fetch(moviesApiUrl, {
+          method: "GET",
+          headers: { 
+            "Authorization": getAuthorization()
+           }}).then(res => res.json()),
+      fetch(usersApiUrl, {
+          method: "GET",
+          headers: { 
+            "Authorization": getAuthorization()
+           }}).then(res => res.json()) // Fetch users data
+    ])
+    .then(([bookings, showtimes, movies, users]) => {
+      allBookings = bookings;
+      allShowtimes = showtimes;
+      allMovies = movies;
+      allUsers = users; // Save users data
+      renderBookings(bookings, showtimes, movies, users);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      bookingTableBody.innerHTML = '<tr><td colspan="7" class="text-center">Error loading data. Please try again later.</td></tr>';
+    });
+  }
+
+  // Render the bookings with human-readable values
+  function renderBookings(bookings, showtimes, movies, users) {
+    bookingTableBody.innerHTML = "";
+    if (bookings.length === 0) {
+      bookingTableBody.innerHTML = '<tr><td colspan="7" class="text-center">No bookings available.</td></tr>';
+    }
+    bookings.forEach(booking => {
+      const show = showtimes.find(s => s.id === booking.showID);
+      const movie = movies.find(m => m.id === show?.movieID);
+      const user = users.find(u => u.id === booking.userID); // Find the user by UserID
+
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${booking.id}</td>
+        <td>${user?.email || 'Unknown User'}</td> <!-- Show email instead of UserID -->
+        <td>${movie?.name || 'Unknown Movie'}</td>
+        <td>${show?.showDate || '-'}</td>
+        <td>${show?.time || '-'}</td>
+        <td>${booking.seatsBooked}</td>
+        <td>₹${booking.amount}</td>
+      `;
+      bookingTableBody.appendChild(row);
+    });
+  }
+
+  // Search functionality
+  searchBookingInput.addEventListener("input", () => {
+    const searchTerm = searchBookingInput.value.toLowerCase();
+    const filtered = allBookings.filter(b =>
+      b.UserID.toString().includes(searchTerm) ||
+      b.ShowID.toString().includes(searchTerm) ||
+      b.id.toString().includes(searchTerm)
+    );
+    renderBookings(filtered, allShowtimes, allMovies, allUsers);
+  });
+
+  // Sorting
+  function sortBookingsByField(field, parseDate = false) {
+    const sorted = [...allBookings].sort((a, b) => {
+      if (parseDate) {
+        return (new Date(a[field]) - new Date(b[field])) * sortDirection;
+      }
+      return (a[field] - b[field]) * sortDirection;
+    });
+    sortDirection *= -1;
+    renderBookings(sorted, allShowtimes, allMovies, allUsers);
+  }
+
+  // Sorting by different fields
+  document.getElementById("sortBookingID").addEventListener("click", () => {
+    sortBookingsByField("id");
+  });
+
+  document.getElementById("sortUserEmail").addEventListener("click", () => {
+    sortBookingsByField("UserID");
+  });
+
+  document.getElementById("sortMovieName").addEventListener("click", () => {
+    sortBookingsByField("MovieName");
+  });
+
+  document.getElementById("sortShowDate").addEventListener("click", () => {
+    sortBookingsByField("ShowDate", true);
+  });
+
+  document.getElementById("sortShowTime").addEventListener("click", () => {
+    sortBookingsByField("ShowTime");
+  });
+
+  document.getElementById("sortSeats").addEventListener("click", () => {
+    sortBookingsByField("SeatsBooked");
+  });
+
+  document.getElementById("sortAmount").addEventListener("click", () => {
+    sortBookingsByField("Amount");
+  });
+
+  fetchData();
+})();
+</script>

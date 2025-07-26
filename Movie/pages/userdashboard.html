@@ -1,0 +1,176 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#" onclick="loadPage('dashboard.html')">Dashboard</a></li>
+    <li class="breadcrumb-item"><a href="#" onclick="loadPage('userhome.html')">User options</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Bookings</li>
+  </ol>
+</nav>
+
+<h2 class="mb-4">Hello, <span id="usernameDisplay"></span>! Here are your bookings:</h2>
+
+<div id="bookingSection">
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped" id="bookingTable">
+      <thead class="table-dark">
+        <tr>
+          <th>#</th>
+          <th>Movie</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Theater</th>
+          <th>Seats</th>
+        </tr>
+      </thead>
+      <tbody id="bookingBody">
+        <!-- Bookings will be injected here -->
+      </tbody>
+    </table>
+  </div>
+  <div id="noBookings" class="alert alert-info d-none">No bookings found.</div>
+</div>
+
+<!-- Upcoming Shows Section -->
+<h3 class="mt-4">Upcoming Shows</h3>
+<div id="movieSelectSection">
+  <label for="movieSelect" class="form-label">Select a Movie</label>
+  <select class="form-select" id="movieSelect">
+    <option value="">Select a Movie</option>
+    <!-- Movie options will be dynamically loaded -->
+  </select>
+</div>
+
+<div id="upcomingShowsSection" class="mt-3">
+  <!-- Upcoming shows for the selected movie will be displayed here -->
+</div>
+
+<script>
+(() => {
+  const username = getUserName();
+  const userId = getUserId();
+
+  document.getElementById('usernameDisplay').textContent = username || 'User';
+
+  if (!userId) {
+    document.getElementById('bookingSection').innerHTML = `
+      <div class="alert alert-danger">You are not logged in. Please <a href="login.html">login</a>.</div>
+    `;
+  } else {
+    Promise.all([
+      fetch('http://localhost:8080/api/bookings?UserID=' + userId,
+    {
+          method: "GET",
+          headers: { 
+            "Authorization": getAuthorization()
+           }}).then(res => res.json()),
+      fetch('http://localhost:8080/api/showtimes',
+    {
+          method: "GET",
+          headers: { 
+            "Authorization": getAuthorization()
+           }}).then(res => res.json()),
+      fetch('http://localhost:8080/api/movies',
+    {
+          method: "GET",
+          headers: { 
+            "Authorization": getAuthorization()
+           }}).then(res => res.json())
+    ])
+    .then(([bookings, showtimes, movies]) => {
+      if (bookings.length === 0) {
+        document.getElementById('noBookings').classList.remove('d-none');
+      } else {
+        const tbody = document.getElementById('bookingBody');
+        bookings.forEach((booking, index) => {
+          const show = showtimes.find(s => s.id === booking.ShowID);
+          const movie = movies.find(m => m.id == show?.MovieID);
+
+          const row = `
+            <tr>
+              <td>${index + 1}</td>
+              <td>${movie?.name || 'Unknown Movie'}</td>
+              <td>${show?.ShowDate || '-'}</td>
+              <td>${show?.Time || '-'}</td>
+              <td>${show?.Theater || '-'}</td>
+              <td>${booking.SeatsBooked}</td>
+            </tr>
+          `;
+          tbody.innerHTML += row;
+        });
+      }
+
+      // Render movie options
+      const movieSelect = document.getElementById('movieSelect');
+      movies.forEach(movie => {
+        const option = document.createElement('option');
+        option.value = movie.id;
+        option.textContent = movie.name;
+        movieSelect.appendChild(option);
+      });
+
+      // Movie selection event
+      movieSelect.addEventListener('change', function () {
+        const selectedMovieId = movieSelect.value;
+        if (selectedMovieId) {
+          displayUpcomingShows(selectedMovieId, showtimes, movies);
+        } else {
+          document.getElementById('upcomingShowsSection').innerHTML = '';
+        }
+      });
+
+      // Function to display upcoming shows in a table
+      function displayUpcomingShows(selectedMovieId, showtimes, movies) {
+        const today = new Date().toISOString().split("T")[0];
+        const upcomingShowtimes = showtimes.filter(showtime => {
+          return showtime.MovieID == selectedMovieId && showtime.ShowDate >= today;
+        });
+
+        const upcomingShowsContainer = document.getElementById('upcomingShowsSection');
+        upcomingShowsContainer.innerHTML = '';
+
+        if (upcomingShowtimes.length === 0) {
+          upcomingShowsContainer.innerHTML = '<p class="alert alert-warning">No upcoming shows available for this movie.</p>';
+        } else {
+          const movie = movies.find(m => m.id == selectedMovieId);
+          const heading = document.createElement('h4');
+          heading.className = 'mt-4';
+          heading.textContent = `Upcoming Shows for: ${movie?.name || 'Selected Movie'}`;
+          upcomingShowsContainer.appendChild(heading);
+
+          const table = document.createElement('table');
+          table.className = 'table table-bordered table-striped mt-3';
+          table.innerHTML = `
+            <thead class="table-dark">
+              <tr>
+                <th>#</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Theater</th>
+                <th>Seats Available</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${upcomingShowtimes.map((show, index) => `
+                <tr>
+                  <td>${index + 1}</td>
+                  <td>${show.ShowDate}</td>
+                  <td>${show.Time}</td>
+                  <td>${show.Theater}</td>
+                  <td>${show.AvailableSeats}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          `;
+          upcomingShowsContainer.appendChild(table);
+        }
+      }
+
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      document.getElementById('bookingSection').innerHTML = `
+        <div class="alert alert-danger">Error loading bookings. Try again later.</div>
+      `;
+    });
+  }
+})();
+</script>
